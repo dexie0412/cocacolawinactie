@@ -1,55 +1,93 @@
-import React, { useState } from "react";
-
-export default function CocaColaUpdatePage() {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const submit = (e) => {
-    e.preventDefault();
-    if (!email.trim()) return;
-    setMessage("✓ Bedankt! Je bent aangemeld voor updates.");
-  };
-
-  return (
-    <div style={{ minHeight: "100vh", background: "#f7f4ef", color: "#18181b", fontFamily: "Arial, Helvetica, sans-serif" }}>
-      <header style={{ position: "sticky", top: 0, zIndex: 10, background: "rgba(255,255,255,.96)", borderBottom: "1px solid #eee" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-          <div style={{ color: "#f40009", fontSize: 28, fontWeight: 900, fontStyle: "italic", letterSpacing: -1 }}>Coca-Cola</div>
-          <nav style={{ display: "flex", gap: 24, fontSize: 14, fontWeight: 700 }}>
-            <a href="#home" style={{ color: "#18181b", textDecoration: "none" }}>Home</a>
-            <a href="#updates" style={{ color: "#18181b", textDecoration: "none" }}>Updates</a>
-            <a href="#over" style={{ color: "#18181b", textDecoration: "none" }}>Over deze pagina</a>
-          </nav>
-        </div>
-      </header>
-
-      <main>
-        <section id="home" style={{ maxWidth: 1100, margin: "0 auto", padding: "75px 22px", display: "flex", flexWrap: "wrap", gap: 48, alignItems: "center" }}>
-          <div style={{ flex: "1 1 380px" }}>
-            <span style={{ display: "inline-block", background: "#fde7e8", color: "#d90008", borderRadius: 999, padding: "9px 15px", fontSize: 14, fontWeight: 800 }}>Website in ontwikkeling</span>
-            <h1 style={{ fontSize: "clamp(46px, 7vw, 72px)", lineHeight: .95, letterSpacing: -3, margin: "22px 0" }}>Welkom bij<br /><span style={{ color: "#f40009" }}>Coca-Cola</span></h1>
-            <p style={{ maxWidth: 540, color: "#626269", fontSize: 18, lineHeight: 1.7 }}>Aan deze pagina wordt nog gebouwd. Meld je aan en blijf op de hoogte van nieuwe functies en veranderingen.</p>
-          </div>
-          <div id="updates" style={{ flex: "1 1 340px", maxWidth: 470, boxSizing: "border-box", borderRadius: 30, background: "#f40009", color: "white", padding: "38px", boxShadow: "0 20px 50px rgba(120,0,0,.18)" }}>
-            <div style={{ fontSize: 34, marginBottom: 14 }}>✉</div>
-            <h2 style={{ margin: 0, fontSize: 32 }}>Blijf op de hoogte</h2>
-            <p style={{ color: "rgba(255,255,255,.82)", lineHeight: 1.6 }}>Vul hieronder je e-mailadres in voor updates.</p>
-            <form onSubmit={submit} style={{ marginTop: 24 }}>
-              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jouw@email.nl" style={{ width: "100%", boxSizing: "border-box", padding: "16px 18px", borderRadius: 15, border: 0, outline: 0, fontSize: 16, marginBottom: 12 }} />
-              <button type="submit" style={{ width: "100%", padding: "16px 18px", borderRadius: 15, border: 0, background: "#18181b", color: "white", cursor: "pointer", fontSize: 15, fontWeight: 800 }}>Aanmelden voor updates</button>
-            </form>
-            {message && <div style={{ marginTop: 15, padding: 13, borderRadius: 12, background: "rgba(255,255,255,.16)", fontWeight: 700, fontSize: 14 }}>{message}</div>}
-          </div>
-        </section>
-
-        <section id="over" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 22px 65px" }}>
-          <div style={{ background: "white", borderRadius: 30, padding: 38, boxShadow: "0 5px 25px rgba(0,0,0,.05)" }}>
-            <h2 style={{ marginTop: 0, fontSize: 28 }}>Deze pagina wordt vernieuwd</h2>
-            <p style={{ color: "#626269", lineHeight: 1.7, maxWidth: 760 }}>Daarom kan deze pagina er tijdelijk anders uitzien dan andere pagina's. We werken aan een frisse en duidelijke ervaring.</p>
-          </div>
-        </section>
-      </main>
-      <footer style={{ borderTop: "1px solid #eee", background: "white", padding: 28, textAlign: "center", color: "#777", fontSize: 14 }}>Conceptpagina • Coca-Cola-stijl</footer>
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coca-Cola | Updates</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #f7f4ef; color: #18181b; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); border-bottom: 1px solid #eee; }
+    .nav { max-width: 1100px; margin: auto; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .brand { color: #f40009; font-size: 28px; font-weight: 900; font-style: italic; letter-spacing: -1px; }
+    nav { display: flex; gap: 24px; }
+    nav a { color: #18181b; text-decoration: none; font-size: 14px; font-weight: 700; transition: color .2s; }
+    nav a:hover { color: #f40009; }
+    .hero { max-width: 1100px; margin: auto; padding: 75px 22px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; }
+    .intro { flex: 1 1 380px; }
+    .badge { display: inline-block; background: #fde7e8; color: #d90008; border-radius: 999px; padding: 9px 15px; font-size: 14px; font-weight: 800; }
+    h1 { font-size: clamp(46px, 7vw, 72px); line-height: .95; letter-spacing: -3px; margin: 22px 0; }
+    h1 span { color: #f40009; }
+    .intro p { max-width: 540px; color: #626269; font-size: 18px; line-height: 1.7; }
+    .update-card { flex: 1 1 340px; max-width: 470px; width: 100%; border-radius: 30px; background: #f40009; color: #fff; padding: 38px; box-shadow: 0 20px 50px rgba(120,0,0,.18); }
+    .mail { font-size: 34px; margin-bottom: 14px; }
+    .update-card h2 { margin: 0; font-size: 32px; }
+    .update-card p { color: rgba(255,255,255,.84); line-height: 1.6; }
+    input { width: 100%; padding: 16px 18px; border-radius: 15px; border: none; outline: none; font-size: 16px; margin: 12px 0; }
+    button { width: 100%; padding: 16px 18px; border-radius: 15px; border: none; background: #18181b; color: #fff; cursor: pointer; font-size: 15px; font-weight: 800; transition: transform .15s, background .2s; }
+    button:hover { background: #29292e; transform: translateY(-2px); }
+    #melding { display: none; margin-top: 15px; padding: 13px; border-radius: 12px; background: rgba(255,255,255,.16); font-size: 14px; font-weight: 700; }
+    .about-wrap { max-width: 1100px; margin: auto; padding: 0 22px 65px; }
+    .about { background: #fff; border-radius: 30px; padding: 38px; box-shadow: 0 5px 25px rgba(0,0,0,.05); }
+    .about h2 { margin-top: 0; font-size: 28px; }
+    .about p { max-width: 760px; color: #626269; line-height: 1.7; }
+    footer { border-top: 1px solid #eee; background: #fff; padding: 28px; text-align: center; color: #777; font-size: 14px; }
+    @media (max-width: 650px) {
+      .hero { padding-top: 45px; }
+      nav { gap: 12px; }
+      h1 { letter-spacing: -2px; }
+      .update-card, .about { padding: 26px; border-radius: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">Coca-Cola</div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#updates">Updates</a>
+        <a href="#over">Over deze pagina</a>
+      </nav>
     </div>
-  );
-}
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="intro">
+        <span class="badge">Website in ontwikkeling</span>
+        <h1>Welkom bij<br><span>Coca-Cola</span></h1>
+        <p>Aan deze pagina wordt nog gebouwd. Meld je aan en blijf op de hoogte van nieuwe functies en veranderingen.</p>
+      </div>
+
+      <div class="update-card" id="updates">
+        <div class="mail">✉</div>
+        <h2>Blijf op de hoogte</h2>
+        <p>Vul hieronder je e-mailadres in voor updates.</p>
+        <form id="updateForm">
+          <input type="email" id="email" placeholder="jouw@email.nl" required>
+          <button type="submit">Aanmelden voor updates</button>
+        </form>
+        <div id="melding">✓ Bedankt! Je bent aangemeld voor updates.</div>
+      </div>
+    </section>
+
+    <section class="about-wrap" id="over">
+      <div class="about">
+        <h2>Deze pagina wordt vernieuwd</h2>
+        <p>Daarom kan deze pagina er tijdelijk anders uitzien dan andere pagina's. We werken aan een frisse en duidelijke ervaring.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>Conceptpagina • Coca-Cola-stijl</footer>
+
+  <script>
+    document.getElementById('updateForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('melding').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
