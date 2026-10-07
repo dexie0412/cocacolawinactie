@@ -1,0 +1,29 @@
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coca-Cola</title>
+</head>
+<body>
+
+<h1>Coca-Cola</h1>
+
+<p>Welkom op deze pagina van Coca-Cola. Aan deze pagina wordt nog gebouwd, daarom ziet alles er iets anders uit dan onze andere pagina's</p>
+
+<input type="email" id="email" placeholder="jouw@email.nl">
+
+<button onclick="verstuurEmail()">
+    Aanmelden voor updates
+</button>
+
+<p id="melding"></p>
+
+<script>
+function verstuurEmail() {
+    document.getElementById("melding").innerHTML =
+        "✅ Er is een e-mail verzonden naar het opgegeven e-mailadres met daarin een link naar Ideal/Wero.";
+}
+</script>
+
+</body>
+</html>
