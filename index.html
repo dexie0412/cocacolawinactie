@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Mail, CheckCircle2 } from "lucide-react";
 
 export default function CocaColaUpdatePage() {
   const [email, setEmail] = useState("");
@@ -8,56 +7,49 @@ export default function CocaColaUpdatePage() {
   const submit = (e) => {
     e.preventDefault();
     if (!email.trim()) return;
-    setMessage("Bedankt! Je bent aangemeld voor updates.");
+    setMessage("✓ Bedankt! Je bent aangemeld voor updates.");
   };
 
   return (
-    <main className="min-h-screen bg-[#f7f4ef] text-zinc-900">
-      <header className="sticky top-0 z-10 border-b border-black/5 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <div className="text-2xl font-black italic tracking-tight text-[#F40009]">Coca-Cola</div>
-          <nav className="hidden gap-7 text-sm font-semibold sm:flex">
-            <a href="#home" className="hover:text-[#F40009]">Home</a>
-            <a href="#updates" className="hover:text-[#F40009]">Updates</a>
-            <a href="#over" className="hover:text-[#F40009]">Over deze pagina</a>
+    <div style={{ minHeight: "100vh", background: "#f7f4ef", color: "#18181b", fontFamily: "Arial, Helvetica, sans-serif" }}>
+      <header style={{ position: "sticky", top: 0, zIndex: 10, background: "rgba(255,255,255,.96)", borderBottom: "1px solid #eee" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "18px 22px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+          <div style={{ color: "#f40009", fontSize: 28, fontWeight: 900, fontStyle: "italic", letterSpacing: -1 }}>Coca-Cola</div>
+          <nav style={{ display: "flex", gap: 24, fontSize: 14, fontWeight: 700 }}>
+            <a href="#home" style={{ color: "#18181b", textDecoration: "none" }}>Home</a>
+            <a href="#updates" style={{ color: "#18181b", textDecoration: "none" }}>Updates</a>
+            <a href="#over" style={{ color: "#18181b", textDecoration: "none" }}>Over deze pagina</a>
           </nav>
         </div>
       </header>
 
-      <section id="home" className="mx-auto grid max-w-6xl gap-10 px-5 py-16 md:grid-cols-2 md:items-center md:py-24">
-        <div>
-          <span className="inline-flex rounded-full bg-[#F40009]/10 px-4 py-2 text-sm font-bold text-[#F40009]">Website in ontwikkeling</span>
-          <h1 className="mt-5 text-5xl font-black leading-[0.95] tracking-tight sm:text-6xl">Welkom bij<br/><span className="text-[#F40009]">Coca-Cola</span></h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-600">Aan deze pagina wordt nog gebouwd. Meld je aan en blijf op de hoogte van nieuwe functies en veranderingen.</p>
-        </div>
+      <main>
+        <section id="home" style={{ maxWidth: 1100, margin: "0 auto", padding: "75px 22px", display: "flex", flexWrap: "wrap", gap: 48, alignItems: "center" }}>
+          <div style={{ flex: "1 1 380px" }}>
+            <span style={{ display: "inline-block", background: "#fde7e8", color: "#d90008", borderRadius: 999, padding: "9px 15px", fontSize: 14, fontWeight: 800 }}>Website in ontwikkeling</span>
+            <h1 style={{ fontSize: "clamp(46px, 7vw, 72px)", lineHeight: .95, letterSpacing: -3, margin: "22px 0" }}>Welkom bij<br /><span style={{ color: "#f40009" }}>Coca-Cola</span></h1>
+            <p style={{ maxWidth: 540, color: "#626269", fontSize: 18, lineHeight: 1.7 }}>Aan deze pagina wordt nog gebouwd. Meld je aan en blijf op de hoogte van nieuwe functies en veranderingen.</p>
+          </div>
+          <div id="updates" style={{ flex: "1 1 340px", maxWidth: 470, boxSizing: "border-box", borderRadius: 30, background: "#f40009", color: "white", padding: "38px", boxShadow: "0 20px 50px rgba(120,0,0,.18)" }}>
+            <div style={{ fontSize: 34, marginBottom: 14 }}>✉</div>
+            <h2 style={{ margin: 0, fontSize: 32 }}>Blijf op de hoogte</h2>
+            <p style={{ color: "rgba(255,255,255,.82)", lineHeight: 1.6 }}>Vul hieronder je e-mailadres in voor updates.</p>
+            <form onSubmit={submit} style={{ marginTop: 24 }}>
+              <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="jouw@email.nl" style={{ width: "100%", boxSizing: "border-box", padding: "16px 18px", borderRadius: 15, border: 0, outline: 0, fontSize: 16, marginBottom: 12 }} />
+              <button type="submit" style={{ width: "100%", padding: "16px 18px", borderRadius: 15, border: 0, background: "#18181b", color: "white", cursor: "pointer", fontSize: 15, fontWeight: 800 }}>Aanmelden voor updates</button>
+            </form>
+            {message && <div style={{ marginTop: 15, padding: 13, borderRadius: 12, background: "rgba(255,255,255,.16)", fontWeight: 700, fontSize: 14 }}>{message}</div>}
+          </div>
+        </section>
 
-        <div id="updates" className="rounded-[2rem] bg-[#F40009] p-7 text-white shadow-2xl shadow-red-900/20 sm:p-10">
-          <Mail className="mb-5 h-9 w-9" />
-          <h2 className="text-3xl font-black">Blijf op de hoogte</h2>
-          <p className="mt-2 text-white/80">Vul hieronder je e-mailadres in voor updates.</p>
-          <form onSubmit={submit} className="mt-7 space-y-3">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="jouw@email.nl"
-              className="w-full rounded-2xl border-0 bg-white px-5 py-4 text-zinc-900 outline-none ring-white/40 transition focus:ring-4"
-            />
-            <button className="w-full rounded-2xl bg-zinc-950 px-5 py-4 font-bold text-white transition hover:scale-[1.01] hover:bg-zinc-800 active:scale-[.99]">Aanmelden voor updates</button>
-          </form>
-          {message && <div className="mt-4 flex items-center gap-2 rounded-xl bg-white/15 p-3 text-sm font-semibold"><CheckCircle2 className="h-5 w-5" />{message}</div>}
-        </div>
-      </section>
-
-      <section id="over" className="mx-auto max-w-6xl px-5 pb-16">
-        <div className="rounded-[2rem] bg-white p-7 shadow-sm sm:p-10">
-          <h2 className="text-2xl font-black">Deze pagina wordt vernieuwd</h2>
-          <p className="mt-3 max-w-3xl leading-7 text-zinc-600">Daarom kan deze pagina er tijdelijk anders uitzien dan andere pagina's. We werken aan een frisse en duidelijke ervaring.</p>
-        </div>
-      </section>
-
-      <footer className="border-t border-black/5 bg-white py-7 text-center text-sm text-zinc-500">Conceptpagina • Coca-Cola-stijl</footer>
-    </main>
+        <section id="over" style={{ maxWidth: 1100, margin: "0 auto", padding: "0 22px 65px" }}>
+          <div style={{ background: "white", borderRadius: 30, padding: 38, boxShadow: "0 5px 25px rgba(0,0,0,.05)" }}>
+            <h2 style={{ marginTop: 0, fontSize: 28 }}>Deze pagina wordt vernieuwd</h2>
+            <p style={{ color: "#626269", lineHeight: 1.7, maxWidth: 760 }}>Daarom kan deze pagina er tijdelijk anders uitzien dan andere pagina's. We werken aan een frisse en duidelijke ervaring.</p>
+          </div>
+        </section>
+      </main>
+      <footer style={{ borderTop: "1px solid #eee", background: "white", padding: 28, textAlign: "center", color: "#777", fontSize: 14 }}>Conceptpagina • Coca-Cola-stijl</footer>
+    </div>
   );
 }
